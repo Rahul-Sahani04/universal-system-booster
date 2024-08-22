@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Booster</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6">
+        <h1 class="text-4xl text-center mb-6 font-serif">System Booster Dashboard</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Memory Usage Chart -->
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl mb-4">Memory Usage</h2>
+                <canvas id="memoryChart"></canvas>
+                <hr class="my-4">
+                <div>
+                    <h3 class="text-lg mb-4">Memory Details</h3>
+                    <p id="memoryDetails">
+                         Used (%): GB | Total: GB 
+                    </p>
+                </div>
+            </div>
+
+            <!-- CPU Usage Chart -->
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl mb-4">CPU Usage</h2>
+                <canvas id="cpuChart"></canvas>
+                <hr class="my-4">
+                <div>
+                    <h3 class="text-lg mb-4">CPU Details</h3>
+                    <p id="cpuDetails">
+                        Used (%): 
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl mb-4">Storage Usage</h2>
+                <canvas id="storageChart"></canvas>
+                <hr class="my-4">
+                <div>
+                    <h3 class="text-lg mb-4">Storage Details</h3>
+                    <p id="storageDetails">
+                        Total: GB | Used:  GB | Used (%): GB
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl mb-4">About System</h2>
+                <hr class="my-4">
+                <div>
+                    <h3 class="text-lg mb-4">System Details <hr class="my-4 w-1/2"></h3>
+                    <p id="systemDetails">
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="flex justify-around gap-4"> -->
+            <div class="mt-8 w-full">
+                <button id="boostButton" class="bg-green-500 px-4 py-2  rounded w-full font-sans text-lg font-bold tracking-wide">
+                    Boost</button>
+            </div>
+    
+            <!-- <div class="mt-8 w-full">
+                <button id="optimizeBtn" class="bg-green-500 px-4 py-2 rounded">Optimize Now</button>
+            </div> -->
+        <!-- </div> -->
+    </div>
+
+
+</body>
+<script src="renderer.js"></script>
+
+</html>
