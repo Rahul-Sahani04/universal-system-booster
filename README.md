@@ -79,6 +79,13 @@ To optimize your system, simply click the "Boost" button. This will:
 - Clear DNS cache.
 - Remove crash dumps.
 
+### Screenshots
+
+![System Booster Dashboard](/assets/SS1.png)
+![System Booster Dashboard](/assets/SS2.png)
+
+
+
 ### Fetching Data
 
 The application fetches system data at regular intervals:
@@ -86,6 +93,7 @@ The application fetches system data at regular intervals:
 - **Memory and CPU Data**: Every second.
 - **Storage Data**: Every 5 seconds.
 - **System Details**: On application load.
+ 
 
 ## Development
 
