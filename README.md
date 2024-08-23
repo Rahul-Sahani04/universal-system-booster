@@ -137,7 +137,7 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 
 ## Contact
 
-For any inquiries or feedback, please contact [Rahul Sahani](mailto:rahul@example.com).
+For any inquiries or feedback, please contact [Rahul Sahani](https://github.com/Rahul-Sahani04/).
 
 ---
 

@@ -12,8 +12,9 @@ console.log("OS Name:", osName);
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    icon: path.join(__dirname, "assets", "Icon.png"),
+    width: 1280,
+    height: 780,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -32,9 +33,12 @@ ipcMain.on("get-system-data", async (event) => {
 
   const cpuUsage = cpuData.currentLoad.toFixed(2);
 
+
+
   event.reply("system-data", {
     memoryUsage: parseFloat(memoryUsage),
     cpuUsage: parseFloat(cpuUsage),
+    cpuData: cpuData,
     memoryDetails: `${(memData.active / 1024 ** 3).toFixed(2)} GB | Total: ${(
       memData.total /
       1024 ** 3
@@ -85,26 +89,35 @@ ipcMain.on("get-storage-data", async (event) => {
 
 ipcMain.on("get-systemDetails", async (event) => {
     const startUp = await si.system();
+
+    const batteryData = await si.battery();
+
     // console.log(startUp);
-    event.reply("systemDetails", startUp);
-  }
-);
+    event.reply("systemDetails", {
+      system: startUp,
+      batteryData: batteryData,
+  })
+
+});
 
 
 
-ipcMain.on("optimizeMemory", async (event) => {
+ipcMain.on("optimizeMemory", async (event, memoryLimit) => {
   try {
     // Fetch all processes
     const processes = await si.processes();
 
+
+    console.log("Memory Limit:", memoryLimit);
+
     console.log("Optimizing memory...");
-    console.log("Processes consuming more than 500MB of memory:");
+    console.log(`Processes consuming more than ${memoryLimit}MB of memory:`);
     console.log("----------------------------------------------");
 
     if (osName === "Windows_NT") {
       // Kill processes consuming more than 500MB of memory
       processes.list.forEach((process) => {
-        if (process.pmem > 500) {
+        if (process.memRss > memoryLimit  * 1024) {
           console.log(`Killing process ${process.name} (PID: ${process.pid})`);
           ps.kill(process.pid, (err) => {
             if (err) {
@@ -122,8 +135,11 @@ ipcMain.on("optimizeMemory", async (event) => {
       processes.list.forEach((process, index) => {
         // console.log(`PID: ${process.pid}, Name: ${process.name}, Memory Used: ${(process.memRss / (1024 )).toFixed(2)} MB`);
         // Check if process is consuming more than 500MB of memory (converted to bytes)
-        if (process.memRss > 500 * 1024) {
+        if (process.memRss > memoryLimit * 1024) {
           // memRss is the resident set size (actual memory used)
+          if (process.name === "Electron" || process.name === "Google Chrome" || process.name === "Code Helper" || process.name === "Code Helper (Renderer)" || process.name === "Code Helper (GPU Process)" || process.name === "system-booster" || process.name === "Electron Helper"){
+            return;
+          }
           console.log(
             `Process to kill: PID: ${process.pid}, Name: ${
               process.name
@@ -252,10 +268,10 @@ ipcMain.on("completionMessage", (event) => {
 });
 
 // Boost System Functionality (Optimize Memory, Clear Temp Files, etc.)
-ipcMain.on("boost-system", async (event) => {
+ipcMain.on("boost-system", async (event, memoryLimit) => {
   // Call other IPC methods as needed
   // For example:
-  ipcMain.emit('optimizeMemory', event);
+  ipcMain.emit('optimizeMemory', event, memoryLimit);
   ipcMain.emit('cleanTempFiles', event);
   ipcMain.emit('cleanCrashDumps', event);
   ipcMain.emit('clearDNSCache', event);

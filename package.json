@@ -18,7 +18,9 @@
             "arm64"
           ]
         }
-      ]
+      ],
+      "icon": "assets/icon.icns"
+
     },
     "win": {
       "target": [
@@ -29,13 +31,15 @@
             "ia32"
           ]
         }
-      ]
+      ],
+      "icon": "assets/icon.png"
     },
     "files": [
       "main.js",
       "index.html",
       "renderer.js",
       "styles.css",
+      "style.css",
       "assets/**/*",
       "node_modules/**/*",
       "package.json"

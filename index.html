@@ -7,13 +7,19 @@
     <title>System Booster</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <line rel="stylesheet" href="style.css">
 </head>
 
 <body class="bg-gray-900 text-white">
     <div class="container mx-auto p-6">
-        <h1 class="text-4xl text-center mb-6 font-serif">System Booster Dashboard</h1>
+        <h1 class="text-4xl text-center mb-6 ">System Booster Dashboard</h1>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Memory Usage Chart -->
             <div class="bg-gray-800 p-6 rounded-lg">
                 <h2 class="text-xl mb-4">Memory Usage</h2>
@@ -42,7 +48,8 @@
 
             <div class="bg-gray-800 p-6 rounded-lg">
                 <h2 class="text-xl mb-4">Storage Usage</h2>
-                <canvas id="storageChart"></canvas>
+                <canvas id="storageChart" 
+                ></canvas>
                 <hr class="my-4">
                 <div>
                     <h3 class="text-lg mb-4">Storage Details</h3>
@@ -52,16 +59,30 @@
                 </div>
             </div>
 
-            <div class="bg-gray-800 p-6 rounded-lg">
-                <h2 class="text-xl mb-4">About System</h2>
-                <hr class="my-4">
-                <div>
-                    <h3 class="text-lg mb-4">System Details <hr class="my-4 w-1/2"></h3>
-                    <p id="systemDetails">
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg mt-6">
+            <h2 class="text-xl mb-4">About System</h2>
+            <hr class="my-4">
+            <div>
+                <h3 class="text-lg mb-4">System Details <hr class="my-4 w-1/2"></h3>
+                <p id="systemDetails">
 
-                    </p>
-                </div>
+                </p>
             </div>
+        </div>
+
+        <!-- Options to select program to close that are consuming more memory like above 200 mb, 500 mb, 1 gb, 2 gb, 5 gb, 10 gb -->
+        <div class="bg-gray-800 p-6 rounded-lg mt-6">
+            <h2 class="text-xl mb-2">Memory Limit</h2>
+            <hr class="my-4">
+            <select id="memoryLimit" class="w-full bg-gray-900 text-white p-2 rounded">
+                <option value="200">Close Programs consuming more than 200 MB</option>
+                <option value="500">Close Programs consuming more than 500 MB</option>
+                <option value="1000">Close Programs consuming more than 1 GB</option>
+                <option value="2000">Close Programs consuming more than 2 GB</option>
+                <option value="5000">Close Programs consuming more than 5 GB</option>
+                <option value="10000">Close Programs consuming more than 10 GB</option>
+            </select>
         </div>
 
         <!-- <div class="flex justify-around gap-4"> -->
